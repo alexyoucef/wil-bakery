@@ -6,19 +6,14 @@
 
 	if( !empty( $_POST ) ) {
 
-		// if( !empty($_POST['identifiant'] ) ) {
-		// 	$identifiant = $_POST['identifiant'];
-		// } else {
-		// 	$identifiant = '';
-		// }
-		// équivaut à :
+		
 		$identifiant 	=  !empty( $_POST['identifiant'] ) ? $_POST['identifiant'] : '' ; 
 		$mdp 			=  !empty( $_POST['mdp'] ) ? $_POST['mdp'] : '' ;
 		$stay_connected =  !empty( $_POST['session'] )  ? $_POST['session'] : '' ;
 
 		// (2) insertion de toutes les valeurs connues
 
-		$bdd = new PDO('mysql:host=localhost;dbname=tpphp', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=wil-bakery', 'root', '');
 
 		if( $bdd ) {
 
@@ -64,23 +59,6 @@
 
 		} // if bdd
 
-		// if( ( LOGIN == $identifiant ) && ( PASS == $mdp ) ) {
-
-		// 	// if( !empty($stay_connected) ) {
-		// 	// 	$expiration = time() + 60*60; 
-		// 	// } else {
-		// 	// 	$expiration = 0;
-		// 	// }
-		// 	// équivaut à :
-		// 	$expiration = !empty( $stay_connected ) ? time()+60*60 : 0;
-
-		// 	setcookie( 'user', 'connecté', $expiration );
-
-		// 	header( 'Location: ./tdb.php');
-
-		// } else {
-		// 	$error_message = 'Identiant/mot de passe incorrects';
-		// }
 
 	} 
 ?>

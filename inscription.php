@@ -8,6 +8,10 @@
 		$prenom = !empty($_POST['prenom']) ? $_POST['prenom'] : '';
 		$mail = !empty($_POST['mail']) ? $_POST['mail'] : '';
 		$mdp = !empty($_POST['mdp']) ? $_POST['mdp'] : '';
+		$adresse = !empty($_POST['adresse']) ? $_POST['adresse'] : '';
+
+		
+		
 
 		if( empty( $identifiant ) ) { 
 			$message_identifiant = 'L\identifiant est obligatoire'; 
@@ -23,6 +27,9 @@
 		}
 		if( empty( $mdp ) ) { 
 			$message_mdp = 'Le mot de passe est obligatoire'; 
+		}
+		if( empty( $adresse ) ) { 
+			$message_adresse = " L'adresse est obligatoire"; 
 		}
 
 		// $handler = fopen(  './data-files/membres.csv', 'r');
@@ -47,7 +54,7 @@
 
 			// $valeurs = array( $identifiant, $nom, $prenom, $mail, $mdp, 'membre' );
 
-			$bdd = new PDO( 'mysql:host=localhost;dbname=tpphp', 'root', '' );
+			$bdd = new PDO( 'mysql:host=localhost;dbname=wil-bakery', 'root', '' );
 
 
 			$sql = "SELECT * FROM membres WHERE 
@@ -62,9 +69,9 @@
 				if( count( $membres ) == 0 ) {
 					$success_msg = 'Votre inscription a été prise en compte';
 					$sql = "INSERT INTO membres 
-						(identifiant, nom, prenom, mail, mdp, role) 
+						(identifiant, nom, prenom, mail, mdp, adresse,role) 
 					VALUES 
-						( '$identifiant', '$nom', '$prenom', '$mail', '$mdp', 'Membre')";
+						( '$identifiant', '$nom', '$prenom', '$mail', '$mdp','$adresse', 'Membre')";
 					$resultat = $bdd->exec( $sql );
 					if( $resultat ) {
 						$success_msg = 'Votre inscription a été prise en compte';
@@ -78,14 +85,6 @@
 
 			unset( $bdd );
 
-			// $handler = fopen(  './data-files/membres.csv', 'a');
-			// if( $handler) {
-			// 	fputcsv( $handler, $valeurs, ";" );
-			// 	fclose($handler);
-			// 	$success_msg = 'Votre inscription a été prise en compte';
-			// }
-
-		// }
 
 	} // if( !empty( $_POST ) )
 
@@ -122,6 +121,10 @@
 
 					<?php if( !empty($message_mail) ) { echo($message_mail); } ?><label for="mail">Mail :
 						<input type="text" name="mail" id="mail">
+					</label>
+
+					<?php if( !empty($message_adresse) ) { echo($message_adresse); } ?><label for="adresse">Adresse :
+						<input type="text" name="adresse" id="adresse">
 					</label>
 
 					<?php if( !empty($message_mdp) ) { echo($message_mdp); } ?><label for="mdp">Mot de passe :

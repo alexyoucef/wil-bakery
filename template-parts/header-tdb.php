@@ -17,7 +17,7 @@
 
 				// nom prénom
 
-				$bd = new PDO('mysql:host=localhost;dbname=tpphp', 'root', '' );
+				$bd = new PDO('mysql:host=localhost;dbname=wil-bakery', 'root', '' );
 
 				if( $bd ) {
 
